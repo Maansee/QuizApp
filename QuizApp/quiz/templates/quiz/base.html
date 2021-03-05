@@ -1,12 +1,13 @@
 
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Complete Website Design Using HTML and CSS</title>
+        <title>Quiz App</title>
         <link rel="stylesheet" type="text/css" href="{% static 'quiz/main.css' %}">
         <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     </head>
@@ -14,6 +15,16 @@
         <section id="header">
             <div class="container">
                 <img src="images/logo.png" class="logo">
+                <div class="col-md-8">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
                 <div class="header-text">
                     <h1>The purpose is to teach,<br> bring learning to people</h1>
                     <span class="square"></span>
@@ -44,3 +55,9 @@
             </ul>
         </nav>
         <img src="images/menu.png" id="menuBtn">
+
+        
+            
+    </body>
+
+</html>
