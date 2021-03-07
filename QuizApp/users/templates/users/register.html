@@ -2,6 +2,28 @@
 {% load static %}
 {% block content %}
     <div class="content-section">
+        {% if otp %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                
+                <legend class="border-bottom mb-4">Verify your OTP</legend>
+                <input type="hidden" name="usr" value="{{usr.username}}">
+                <input type="text" placeholder="Enter OTP:" name="otp">
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit OTP </button>
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    <i id="resendOTPmsg">Resend OTP</i> <a class="ml-2" href="#">Sign In</a>
+                </small>
+            </div>
+        </form>
+
+
+
+        {% else %}
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -13,6 +35,7 @@
                 <button class="btn btn-outline-info" type="submit">Request OTP </button>
             </div>
         </form>
+        {% endif %}
         <div class="border-top pt-3">
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="#">Sign In</a>
