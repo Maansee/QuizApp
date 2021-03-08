@@ -23,7 +23,7 @@ def register(request):
                     usr.is_active = True
                     usr.save()
                     messages.success(request, f'Account created for {usr.username}')
-                    return redirect('quiz-home')
+                    return redirect('login')
                 else:
                      messages.error(request, f'Account not created for {usr.username}. Please validate OTP')
                      return render(request, 'user/register.html', {'otp': True, 'usr': usr})

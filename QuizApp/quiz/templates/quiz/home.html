@@ -32,15 +32,21 @@
         </section>
 
         <nav id="sideNav">
+            {% if user.is_authenticated %}
             <ul>
                 <li><a href="#header">HOME</a></li>
                 <li><a href="#about">ABOUT US</a></li>
-                <li><a href="#features">LOGIN</a></li>
-                <li><a href="#courses">REGISTER</a></li>
-                <li><a href="#offer">OFFER</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li> 
             </ul>
+
+            {% else %}
+            <ul>
+                <li><a href="#header">HOME</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                <li><a href="{% url 'register' %}">REGISTER</a></li> 
+            </ul>
+            {% endif %}
         </nav>
         <img src="images/menu.png" id="menuBtn"> 
 
