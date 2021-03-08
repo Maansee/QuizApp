@@ -20,11 +20,13 @@ def register(request):
             usr = User.objects.get(username=get_user)
             if not usr.is_active:
                 if int(otp_present)== UserOTP.objects.filter(user = usr).last().otp:
-                    messages.success(request, f'Account created for {username}')
+                    usr.is_active = True
+                    usr.save()
+                    messages.success(request, f'Account created for {usr.username}')
                     return redirect('quiz-home')
                 else:
-                     messages.error(request, f'Account not created for {username}. Please validate OTP')
-                     return render(request, 'user/signup.html', {'otp': True, 'usr': usr})
+                     messages.error(request, f'Account not created for {usr.username}. Please validate OTP')
+                     return render(request, 'user/register.html', {'otp': True, 'usr': usr})
 
 
 

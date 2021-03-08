@@ -2,6 +2,17 @@
 {% load static %}
 {% block content %}
     <div class="content-section">
+        <div class="col-md-4">
+            {% if messages %}
+                          {% for mess in messages %}
+                          <div class="alert alert-{{mess.tags}}" role="alert">
+                            {{mess}}
+                          </div>
+                          {% endfor %}
+                        {% endif %} 
+                <br>
+
+        </div>
         {% if otp %}
         <form method="POST">
             {% csrf_token %}
@@ -32,7 +43,7 @@
                 {{ form.as_p }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Request OTP </button>
+                <button class="btn btn-outline-info" type="submit">Register and Request OTP </button>
             </div>
         </form>
         {% endif %}
